@@ -29,7 +29,7 @@ public class NoticeUpProcAct implements Action {
 		// 등록할 게시글 데이터를 받아와 notice인스턴스에 담음(매개변수로 사용하기 편하기 때문)
 		
 		NoticeUpProcSvc noticeUpProcSvc = new NoticeUpProcSvc();
-		// DB를 제외한 비즈니스 로직을 처리하기 위한 인스턴스 생성
+		// DB를 제외한 비즈니스 로직을 처리하기 위한 인스턴스 생성!
 		int result = noticeUpProcSvc.noticeUpdate(notice);
 		
 		if (result == 0) {	// 글 등록에 실패했으면
