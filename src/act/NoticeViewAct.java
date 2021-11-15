@@ -14,6 +14,7 @@ public class NoticeViewAct implements Action {
 		String schtype = request.getParameter("schtype");	// 검색조건
 		String keyword = request.getParameter("keyword");	// 검색어
 		
+		keyword = new String(keyword.getBytes("ISO-88591"));
 		PageInfo pageInfo = new PageInfo();		// 페이징에 필요한 정보를 저장할 인스턴스 생성
 		pageInfo.setCpage(cpage);
 		pageInfo.setSchtype(schtype);

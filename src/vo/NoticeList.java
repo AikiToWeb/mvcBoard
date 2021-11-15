@@ -3,8 +3,14 @@ package vo;
 public class NoticeList {
 // 공지사항에서 하나의 게시글을 저장할 클래스
 	private int nl_idx, nl_readcnt, ai_idx;
-	private String nl_kind, nl_title, nl_content, nl_date;
+	private String nl_writer, nl_kind, nl_title, nl_content, nl_date;
 	
+	public String getNl_writer() {
+		return nl_writer;
+	}
+	public void setNl_writer(String nl_writer) {
+		this.nl_writer = nl_writer;
+	}
 	public int getNl_idx() {
 		return nl_idx;
 	}

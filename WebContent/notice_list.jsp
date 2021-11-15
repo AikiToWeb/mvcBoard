@@ -47,7 +47,7 @@ if (noticeList.size() > 0 && pageInfo.getRcnt() > 0) {	// 보여줄 게시글 �
 		
 		String title = nl.getNl_title();
 		if (title.length() > 30) title = title.substring(0, 28) + "...";
-		String lnk = "<a href='notice_view.brd?idx=" + nl.getNl_idx() + args + "'>";
+		String lnk = "<a href='notice_preview.brd?idx=" + nl.getNl_idx() + args + "'>";
 %>		
 <tr align="center" onmouseover="this.style.background='#efefef';" onmouseout="this.style.background='';">
 <td><%=num %></td>
@@ -65,32 +65,32 @@ if (noticeList.size() > 0 && pageInfo.getRcnt() > 0) {	// 보여줄 게시글 �
 %>	
 </table>
 <br />
-<table width="700" cellpadding="5" cellpacing="0">
+<table width="700" cellpadding="5" cellspacing="0">
 <tr>
 <td width="600" align="center">
 <%
 if (noticeList.size() > 0 && pageInfo.getRcnt() > 0) {	// 보여줄 게시글 목록이 있으면 페이지 번호를 보여줌
 	String pageLink = "notice_list.brd?cpag=";
-
 	if(pageInfo.getCpage() == 1) {	// 현재 페이지 번호가 1이면
 		out.println("[&lt;&lt;]&nbsp;&nbsp;[&lt;]&nbsp;&nbsp;");	// <<	<
 	} else {
 		out.print("<a href='" + pageLink + "1" + schargs + "'>[&lt;&lt;]</a>&nbsp;&nbsp;");
-		out.println("<a href='" + pageLink + (pageInfo.getCpage() - 1) + schargs + "'>[&lt;&lt;]</a>&nbsp;&nbsp;");
+		out.println("<a href='" + pageLink + (pageInfo.getCpage() - 1) + schargs + "'>[&lt;]</a>&nbsp;&nbsp;");
 	}
 	
 	for (int i = 1, j = pageInfo.getSpage(); i <= pageInfo.getBsize() && j <= pageInfo.getEpage(); i++, j++) {
-	// i : 루프를 돌릴 횟수를 검사하는 용도의 변수, J : 페이지 번호 출력용 ㅕㄴ수
+	// i : 루프를 돌릴 횟수를 검사하는 용도의 변수, J : 페이지 번호 출력용 변수
 		if (pageInfo.getCpage() == j) {
 			out.print("&nbsp;<strong>" + j + "</strong>&nbsp;");
-			out.println("&nbsp;<a href='" + pageLink + j + schargs + "'>" + j + "</a>&nbsp;");
+		} else {
+			out.print("&nbsp;<a href='" + pageLink + j + schargs + "'>" + j + "</a>&nbsp;");
 		}
 	}
 	
 	if(pageInfo.getCpage() == pageInfo.getPcnt()) {
-		out.println("&nbsp;&nbsp;[&gt;]&nbsp;&nbsp;[&gt;&gt;]");
+		out.println("&nbsp;&nbsp;[&gt;]&nbsp;&nbsp;[&gt;&gt;]");	// >	>>
 	} else {
-		out.print("<a href='" + pageLink + (pageInfo.getCpage() + 1) + schargs + "'>[&gt;]</a>");
+		out.print("&nbsp;&nbsp;<a href='" + pageLink + (pageInfo.getCpage() + 1) + schargs + "'>[&gt;]</a>");
 		out.println("&nbsp;&nbsp;<a href='" + pageLink + (pageInfo.getPcnt()) + schargs + "'>[&gt;&gt;]</a>");
 	}	
 }
@@ -98,7 +98,18 @@ if (noticeList.size() > 0 && pageInfo.getRcnt() > 0) {	// 보여줄 게시글 �
 </td>
 <td width="*" align="right">
 	<input type="button" value="글 등록" onclick="location.href='notice_in_form.brd';" />
-</td>
+</td></tr>
+<form name="frmSch" method="get" >
+<tr><td colspan="2" align="center">
+	<select name="schtype">
+		<option value="TITLE" <% if (pageInfo.getSchtype().equals("TITLE")) {%> selected="selectd" <%} %>>제목</option>
+		<option value="CONTENT" <% if (pageInfo.getSchtype().equals("CONTENT")) {%> selected="selectd" <%} %>>내용</option>
+		<option value="TC" <% if (pageInfo.getSchtype().equals("TC")) {%> selected="selectd" <%} %>>제목+내용</option>
+	</select>
+	<input type="text" name="keyword" value="<%=pageInfo.getKeyword() %>"/>
+	<input type="submit" value="검색"/>
+</td></tr>
+</form>
 </table>
 </body>
 </html>
