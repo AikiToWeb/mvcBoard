@@ -1,0 +1,20 @@
+MVC공지사항 파일 명세서
+
+등록 폼	 : notice_ in_form.brd		-> NoticeInAct		-> notice_in_form.jsp
+
+등록 처리	 : notice_ in_proc.brd		-> NoticeInProcAct	-> NoticeInProcSvc		-> NoticeInProcDao	-> notice_view.brd
+
+조회수 증가	 : notice_preview.brd 		-> NoticePreviewAct -> NoticePreviewSvc		-> NoticePreviewDao	-> notice_view.brd
+
+글 보기	 : notice_view.brd			-> NoticeViewAct	-> NoticeViewSvc		-> NoticeViewDao	-> notice_view.jsp
+
+글 목록	 : notice_list.brd			-> NoticeListAct	-> NoticeListSvc		-> NoticeListDao	-> notice_list.jsp
+
+수정 폼 	 : notice_up_form.brd		-> NoticeUpAct		-> NoticeUpSvc			-> NoticeUpDao		-> notice_up_form.jsp
+
+수정 처리	 : notice_up_proc.brd
+
+삭제 처리 	 : notice_del_proc.brd
+
+
+
