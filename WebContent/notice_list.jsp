@@ -49,7 +49,7 @@ if (noticeList.size() > 0 && pageInfo.getRcnt() > 0) {	// 보여줄 게시글 �
 		if (title.length() > 30) title = title.substring(0, 28) + "...";
 		String lnk = "<a href='notice_view.brd?idx=" + nl.getNl_idx() + args + "'>";
 %>		
-<tr align="center" onmouseover="this.style.background:#efefef;" onmouseout="this.style.background:;">
+<tr align="center" onmouseover="this.style.background='#efefef';" onmouseout="this.style.background='';">
 <td><%=num %></td>
 <td><%=kind %></td>
 <td align="left"><%=lnk + title + "</a>" %></td>
@@ -63,6 +63,34 @@ if (noticeList.size() > 0 && pageInfo.getRcnt() > 0) {	// 보여줄 게시글 �
 	out.println("<tr><td colspan='5'>검색결과가 없습니다.</td></tr>");
 }
 %>	
+</table>
+<br />
+<table width="700" cellpadding="5" cellpacing="0">
+<tr>
+<td width="600" align="center">
+<%
+if (noticeList.size() > 0 && pageInfo.getRcnt() > 0) {	// 보여줄 게시글 목록이 있으면 페이지 번호를 보여줌
+	String pageLink = "notice_list.brd?cpag=";
+
+	if(pageInfo.getCpage() == 1) {	// 현재 페이지 번호가 1이면
+		out.println("[&lt;&lt;]&nbsp;&nbsp;[&lt;]&nbsp;&nbsp;");	// <<	<
+	} else {
+		out.print("<a href='" + pageLink + "1" + schargs + "'>[&lt;&lt;]</a>&nbsp;&nbsp;");
+		out.println("<a href='" + pageLink + (pageInfo.getCpage() - 1) + schargs + "'>[&lt;&lt;]</a>&nbsp;&nbsp;");
+	}
+	
+	if(pageInfo.getCpage() == pageInfo.getPcnt()) {
+		out.println("&nbsp;&nbsp;[&gt;]&nbsp;&nbsp;[&gt;&gt;]");
+	} else {
+		out.print("<a href='" + pageLink + (pageInfo.getCpage() + 1) + schargs + "'>[&gt;]</a>");
+		out.println("&nbsp;&nbsp;<a href='" + pageLink + (pageInfo.getPcnt()) + schargs + "'>[&gt;&gt;]</a>");
+	}	
+}
+%>
+</td>
+<td width="*" align="right">
+	<input type="button" value="글 등록" onclick="location.href='notice_in_form.brd';" />
+</td>
 </table>
 </body>
 </html>
