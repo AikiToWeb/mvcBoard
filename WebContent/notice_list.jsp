@@ -79,6 +79,14 @@ if (noticeList.size() > 0 && pageInfo.getRcnt() > 0) {	// 보여줄 게시글 �
 		out.println("<a href='" + pageLink + (pageInfo.getCpage() - 1) + schargs + "'>[&lt;&lt;]</a>&nbsp;&nbsp;");
 	}
 	
+	for (int i = 1, j = pageInfo.getSpage(); i <= pageInfo.getBsize() && j <= pageInfo.getEpage(); i++, j++) {
+	// i : 루프를 돌릴 횟수를 검사하는 용도의 변수, J : 페이지 번호 출력용 ㅕㄴ수
+		if (pageInfo.getCpage() == j) {
+			out.print("&nbsp;<strong>" + j + "</strong>&nbsp;");
+			out.println("&nbsp;<a href='" + pageLink + j + schargs + "'>" + j + "</a>&nbsp;");
+		}
+	}
+	
 	if(pageInfo.getCpage() == pageInfo.getPcnt()) {
 		out.println("&nbsp;&nbsp;[&gt;]&nbsp;&nbsp;[&gt;&gt;]");
 	} else {
